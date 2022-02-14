@@ -1,0 +1,15 @@
+{
+  "name": "store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "store.js",
+  "scripts": {
+    "start": "ts-node store.ts"
+  },
+  "author": "Schatten",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
