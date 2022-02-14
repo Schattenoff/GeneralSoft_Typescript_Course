@@ -30,6 +30,27 @@ class User {
         return this.basket.filter(element => element.category === category);
     }
 
+    getMostExpensiveProduct() {
+        return this.basket.reduce((previousValue, currentValue) => previousValue.price > currentValue.price ? previousValue : currentValue);
+    }
+
+    getMostInexpensiveProduct() {
+        return this.basket.reduce((previousValue, currentValue) => previousValue.price < currentValue.price ? previousValue : currentValue);
+    }
+
+    removeProduct(id : number) {
+        this.basket.splice(this.basket.findIndex(item => item.id === id), 1);
+    }
+
+    calculateTotalPrice() {
+        let totalPrice : number[] = [];
+        this.basket.forEach((item, index) => { 
+            totalPrice[index] = item.price;
+        })
+        return totalPrice.reduce((sum, current)=> sum += current);
+    }
+
+
     buy() : void {
         this.basket = [];
         console.log('Thanks for buying. Enjoy your shopping!');
