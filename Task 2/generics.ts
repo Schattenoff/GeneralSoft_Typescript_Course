@@ -27,11 +27,22 @@ const myMap2 = new CustomMap<City, Country>();
 myMap1.add(1, 'first');
 myMap1.add(2, 'second');
 myMap1.add(3, 'third');
-console.log(myMap1.arr);
-myMap1.has(2);
+myMap1.add(1, 'first again');
+myMap1.remove(4);
+
+console.log(myMap1.get(1));
+console.log(myMap1.get(2));
+console.log(myMap1.get(4));
+console.log(myMap1.has(2));
+console.log(myMap1.has(4));
 
 myMap2.add(russia.capital, russia);
-myMap2.add(belarus.capital, russia);
-console.log(myMap2.arr)
+myMap2.add(belarus.capital, belarus);
+
+console.log(myMap2.get(moscow));
+console.log(myMap2.get(minsk));
+
+// console.log(`custom map output: ${myMap1}`);
+
 
 
