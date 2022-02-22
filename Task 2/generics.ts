@@ -42,7 +42,7 @@ myMap2.add(belarus.capital, belarus);
 console.log(myMap2.get(moscow));
 console.log(myMap2.get(minsk));
 
-// console.log(`custom map output: ${myMap1}`);
+console.log(`custom map output: ${myMap1}`);
 
 
 

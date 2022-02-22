@@ -6,24 +6,17 @@ enum Category {
 
 
 class Product {
-    private _id: number;
-    price : number;
-    category : any;
-    title: string;
+    private idProduct: number;
 
-    constructor(Price: number, Category: any, Title: string) {
-        this.price = Price;
-        this.category = Category;
-        this.title = Title;
-        this._id = Product.generationID();
+    constructor(readonly price: number, readonly category: Category, readonly title: string) {
+        this.idProduct = Product.generationID();
     }
     private static generationID() : number {
-        let id = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
-        return id;
+        return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
     }
 
     get id() {
-        return this._id;
+        return this.idProduct;
     }
 }
 

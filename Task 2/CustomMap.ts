@@ -1,6 +1,10 @@
 import { Pair } from "./Pair";
 class CustomMap <KeyType, ValueType> {
-    private _arr: Pair<KeyType, ValueType>[] = [];
+    private array: Pair<KeyType, ValueType>[] = [];
+
+    toString() {
+        return `${this.arr.forEach(item => item.key)}->`;
+    }
 
     add(key: KeyType, value: ValueType): void {
         if(this.has(key)) { 
@@ -36,7 +40,7 @@ class CustomMap <KeyType, ValueType> {
      }
 
     get arr() : Pair<KeyType, ValueType>[] {
-        return this._arr;
+        return this.array;
     }
 }
 

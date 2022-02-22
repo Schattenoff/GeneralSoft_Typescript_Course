@@ -1,24 +1,24 @@
 import { Product, Category } from './Product';
 class User {
-    basket : Product[] = [];
+    private basket : Product[] = [];
 
     addToBasket(things : Product | Product[]) : void {
         //Product Array
         if (Array.isArray(things)) {
             things.forEach((thing : Product) => {
-                if (this.checkID(thing)) {
-                    console.log(`You already have ${thing.title} in your basket`);
-                } else {
-                    this.basket.push(thing);
-                }
+                this.addToBasketThing(thing);
             })
         } else {
             //Product One
-            if (this.checkID(things)) {
-                console.log(`You already have ${things.title} in your basket`);
-            } else {
-                this.basket.push(things);
-            }
+            this.addToBasketThing(things);
+        }
+    }
+
+    addToBasketThing(thing) {
+        if (this.checkID(thing)) {
+            console.log(`You already have ${thing.title} in your basket`);
+        } else {
+            this.basket.push(thing);
         }
     }
 
@@ -43,13 +43,8 @@ class User {
     }
 
     calculateTotalPrice() {
-        let totalPrice : number[] = [];
-        this.basket.forEach((item, index) => { 
-            totalPrice[index] = item.price;
-        })
-        return totalPrice.reduce((sum, current)=> sum += current);
+        return this.basket.reduce((first, second) => first.price + second.price);
     }
-
 
     buy() : void {
         this.basket = [];

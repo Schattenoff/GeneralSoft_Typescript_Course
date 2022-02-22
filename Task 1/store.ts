@@ -24,3 +24,4 @@ console.log(user.getProductsByCategory(Category.phones));
 console.log(user.getMostInexpensiveProduct().title);
 
 user.buy();
+
