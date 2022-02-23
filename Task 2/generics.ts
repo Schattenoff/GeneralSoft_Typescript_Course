@@ -8,10 +8,12 @@ class Pair <KeyType, ValueType> {
 class CustomMap <KeyType, ValueType> {
     private array: Pair<KeyType, ValueType>[] = [];
 
-    toString() {
-       this.arr.forEach(item => {
-            `${item.key}->${item.value}`
+    toString() : string {
+        let res : string = '';
+        this.arr.forEach(item => {
+           res = `${res} ${item.key}->${item.value}`;
         })
+        return res;
     }
 
     add(key: KeyType, value: ValueType): void {
