@@ -6,7 +6,7 @@ class Pair <KeyType, ValueType> {
 }
 
 class CustomMap <KeyType, ValueType> {
-    private array: Pair<KeyType, ValueType>[] = [];
+    private arr: Pair<KeyType, ValueType>[] = [];
 
     toString() : string {
         let res : string = '';
@@ -24,7 +24,7 @@ class CustomMap <KeyType, ValueType> {
         }
     }
     
-    remove(key: KeyType) {
+    remove(key: KeyType) : string | void {
         if(this.has(key)){
             this.arr.forEach((item, index) => {
                 if(item.key === key) {
@@ -32,25 +32,25 @@ class CustomMap <KeyType, ValueType> {
                 }
             })
         } else {
-            console.log(`Pair with key ${key} doesn't exist`);
+           console.log(this.messageNoPair(key));
         }
     }
 
-    get(key: KeyType) {
+    get(key: KeyType) : ValueType | string {
         if(this.has(key)){
             let [array] = this.arr.filter(item => item.key === key)
             return array.value;
         } else {
-            return `Pair with key ${key} doesn't exist`;
+           return this.messageNoPair(key);
         }
     }
 
     has(key: KeyType): boolean {
         return this.arr.some(item => item.key === key);
-     }
+    }
 
-    get arr() : Pair<KeyType, ValueType>[] {
-        return this.array;
+    messageNoPair(key : KeyType) : string {
+        return `Pair with key ${key} doesn't exist`;
     }
 }
 
