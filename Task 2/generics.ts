@@ -1,14 +1,14 @@
 class Pair <KeyType, ValueType> {
-    constructor(readonly key: KeyType, readonly value: ValueType) {
-        this.key = key;
-        this.value = value;
-    }
+    constructor(
+        readonly key: KeyType, 
+        readonly value: ValueType
+    ) {}
 }
 
 class CustomMap <KeyType, ValueType> {
     private arr: Pair<KeyType, ValueType>[] = [];
 
-    toString() : string {
+    public toString() : string {
         let res : string = '';
         this.arr.forEach(item => {
            res = `${res} ${item.key}->${item.value}`;
@@ -16,7 +16,7 @@ class CustomMap <KeyType, ValueType> {
         return res;
     }
 
-    add(key: KeyType, value: ValueType): void {
+    public add(key: KeyType, value: ValueType): void {
         if(this.has(key)) { 
             console.log(`You already have pair with key ${key}`);
         } else {
@@ -24,33 +24,30 @@ class CustomMap <KeyType, ValueType> {
         }
     }
     
-    remove(key: KeyType) : string | void {
+    public remove(key: KeyType) : string | void {
         if(this.has(key)){
-            this.arr.forEach((item, index) => {
-                if(item.key === key) {
-                    this.arr.splice(index, 1);
-                }
-            })
+            let index = this.arr.findIndex(item => item.key === key)
+            this.arr.splice(index, 1);
         } else {
-           console.log(this.messageNoPair(key));
+           this.printError(key);
         }
     }
 
-    get(key: KeyType) : ValueType | string {
+    public get(key: KeyType) : ValueType | undefined {
         if(this.has(key)){
             let [array] = this.arr.filter(item => item.key === key)
             return array.value;
         } else {
-           return this.messageNoPair(key);
+            this.printError(key);
         }
     }
 
-    has(key: KeyType): boolean {
-        return this.arr.some(item => item.key === key);
+    public has(key: KeyType): boolean {
+        return !!this.arr.find(item => item.key === key);
     }
 
-    messageNoPair(key : KeyType) : string {
-        return `Pair with key ${key} doesn't exist`;
+    public printError(key : KeyType) : void {
+        console.log(`Pair with key ${key} doesn't exist`);
     }
 }
 
