@@ -22,7 +22,7 @@ class Product {
 class User {
     private basket : Product[] = [];
 
-    addToBasket(things : Product | Product[]) : void {
+    public addToBasket(things : Product | Product[]) : void {
         //Product Array
         if (Array.isArray(things)) {
             things.forEach((thing : Product) => {
@@ -34,7 +34,7 @@ class User {
         }
     }
 
-    addToBasketThing(thing : Product) {
+    public addToBasketThing(thing : Product) {
         if (this.checkID(thing)) {
             console.log(`You already have ${thing.title} in your basket`);
         } else {
@@ -43,30 +43,30 @@ class User {
     }
 
     private checkID(thing : Product) : boolean {
-        return this.basket.some(element => element.id === thing.id);
+        return !!this.basket.find(element => element.id === thing.id);
     } 
 
-    getProductsByCategory(category : Category) : Product[] {
+    public getProductsByCategory(category : Category) : Product[] {
         return this.basket.filter(element => element.category === category);
     }
 
-    getMostExpensiveProduct() {
+    public getMostExpensiveProduct() {
         return this.basket.reduce((previousValue, currentValue) => previousValue.price > currentValue.price ? previousValue : currentValue);
     }
 
-    getMostInexpensiveProduct() {
+    public getMostInexpensiveProduct() {
         return this.basket.reduce((previousValue, currentValue) => previousValue.price < currentValue.price ? previousValue : currentValue);
     }
 
-    removeProduct(id : number) {
+    public removeProduct(id : number) {
         this.basket.splice(this.basket.findIndex(item => item.id === id), 1);
     }
 
-    calculateTotalPrice() : number {
+    public calculateTotalPrice() : number {
         return this.basket.reduce((total : number, product : Product) => total + product.price, 0);
     }
 
-    buy() : void {
+    public buy() : void {
         this.basket = [];
         console.log('Thanks for buying. Enjoy your shopping!');
     }
